@@ -4,6 +4,9 @@ import Headphones from "../../assets/headphon.png";
 import NasaLogo from "../../assets/nasa_logo.png";
 import Sun from "../../assets/sun.png";
 
+import Meteroid_One from "../../assets/Meteorite.png";
+import Meteroid_Two from "../../assets/Meteorite_1.png";
+
 import Particles from "react-tsparticles";
 import ParticleConfig from "../../config/particles.json";
 import ParticleConfig_Less from "../../config/particles_less.json";
@@ -45,7 +48,10 @@ const Warning = () => {
                 The objective of this project is to create sonifications based
                 on footage provided by NASA.
                 <br />
-                <i className="font-thin text-lg"> Scroll down </i>
+                <i className="font-thin text-lg animate-waving-hand">
+                  {" "}
+                  Scroll down{" "}
+                </i>
               </p>
             </div>
 
@@ -88,12 +94,45 @@ const Warning = () => {
       </div>
 
       <div className="h-screen flex flex-col justify-center items-center w-full text-center ">
+        <div
+          id="rowing"
+          className="flex flex-row justify-around items-center w-full h-64"
+        >
+          <div>
+
+            
+            <img
+              src={Meteroid_One}
+              alt="meteoroid"
+              className="h-48 w-48 animate-bouncy-twirly-asteroid"
+            />
+          </div>
+
+
+   
+
         <p>Or, in this case...</p>
+
+        <div>
+          <img
+            src={Meteroid_Two}
+            alt="meteoroid"
+            className="h-64 w-64 animate-floaty-rotaty-pulsy-asteroid"
+          />
+        </div>
+        </div> 
       </div>
 
       <div className="h-screen flex flex-col justify-center items-center w-full text-center ">
-        <p className="text-9xl"> 👂🎧 </p>
-        <p className="text-2xl">With our ears.</p>
+        <div
+          id="rowing"
+          className="flex flex-row justify-around items-center w-full h-64"
+        >
+          <div>
+            <p className="text-9xl"> 👂🎧 </p>
+            <p className="text-2xl">With our ears.</p>
+          </div>
+        </div>
       </div>
 
       <Link to="/">
