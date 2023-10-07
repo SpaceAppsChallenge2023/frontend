@@ -9,7 +9,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.8);
-  background-color: #131313; 
+  background-color: #040404; 
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,6 +19,18 @@
 
   
 
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-grow-2 {
+  flex-grow: 2;
+}
+
+.flex-grow-3 {
+  flex-grow: 3;
 }
 
 a {
