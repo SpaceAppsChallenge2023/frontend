@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
+import Particles from "react-tsparticles";
 import Video_Basado from "./nasa_video.mp4";
+import ButtonGroup from "../../ButtonGroup/ButtonGroup";
 
 const VideoPlayer = () => {
   const [playState, setPlayState] = useState("Play");
@@ -17,23 +19,60 @@ const VideoPlayer = () => {
 
   const handleVideoEnded = () => {
     setPlayState("Restart");
-    videoRef.current.currentTime = 0; // Reset video to the beginning
+    videoRef.current.currentTime = 0;
   };
 
   return (
-    <div>
-      <div className="border-2 rounded-xl border-neutral-50">
+    <div className="relative align-center mx-auto justify-center">
+      <Particles 
+        id="tsparticles"
+        options={{
+          particles: {
+            number: {
+              value: 50,
+            },
+            size: {
+              value: 3,
+            },
+            color: {
+              value: "#ffcc00",
+            },
+            move: {
+              enable: true,
+              speed: 1,
+              random: true,
+            },
+            links: {
+              enable: false,
+            },
+          },
+        }}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+        }}
+      />
+      <div className="relative z-10 rounded-xl">
         <video
           ref={videoRef}
-          width="1000"
-          height="500"
+          width="1920"
+          height="1080"
           src={Video_Basado}
           onEnded={handleVideoEnded}
+          className="rounded-xl video-style" // Add CSS class for additional styles
+          autoPlay 
         />
       </div>
-      <button onClick={playVideo} className="mt-10">
-        {playState}
-      </button>
+      <div className = "w-full" > 
+      <div className="flex flex-row z-10 relative"> 
+        <button onClick={playVideo} className="mt-3">
+          {playState}
+        </button>
+        <ButtonGroup />
+      </div> 
+      </div>
     </div>
   );
 };

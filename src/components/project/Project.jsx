@@ -7,9 +7,9 @@ const Project = () => {
   return (
     <div>
   
-      <Link to="/"> Return </Link>
-      <h2 class="text-4xl font-bold dark:text-white">Placeholder Title</h2>
+      
       <VideoPlayer />
+      <Link to="/"> Return </Link>
     </div>
   );
 };

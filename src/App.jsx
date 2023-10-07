@@ -1,23 +1,93 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import TitleScreen from "./components/title_screen/TitleScreen";
 import Project from "./components/project/Project";
 import Warning from "./components/warning/Warning";
-import background from "./assets/background.jpg";
+import "./App.css";
+import { OrbitSpace } from "orbit-space";
 
 function App() {
-  return (
-    <>
- 
+  const pageTransition = {
+    in: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+    },
+    out: {
+      opacity: 0,
+      x: "-100vw",
+      scale: 0.8,
+    },
+  };
 
-      <Router>
-        <Routes>
-          <Route path="/" element={<TitleScreen />} />
-          <Route path="/home" element={<Project />} />
-          <Route path="/warning" element={<Warning />} />
-        </Routes>
-      </Router>
-    </>
+  const pageTransitionDuration = {
+    duration: 1,
+  };
+
+  return (
+    <Router>
+      <RoutesWithTransitions
+        pageTransition={pageTransition}
+        pageTransitionDuration={pageTransitionDuration}
+      />
+    </Router>
+  );
+}
+
+function RoutesWithTransitions({ pageTransition, pageTransitionDuration }) {
+  return (
+    <AnimatePresence>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="text-center">
+              <Link to="/warning">
+                <OrbitSpace>
+                  <motion.div
+                    initial="out"
+                    animate="in"
+                    exit="out"
+                    variants={pageTransition}
+                    transition={pageTransitionDuration}
+                  >
+                    <TitleScreen />
+                  </motion.div>
+                </OrbitSpace>
+              </Link>
+            </div>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <motion.div
+              initial="out"
+              animate="in"
+              exit="out"
+              variants={pageTransition}
+              transition={pageTransitionDuration}
+            >
+              <Project />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/warning"
+          element={
+            <motion.div
+              initial="out"
+              animate="in"
+              exit="out"
+              variants={pageTransition}
+              transition={pageTransitionDuration}
+            >
+              <Warning />
+            </motion.div>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
   );
 }
 

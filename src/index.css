@@ -9,19 +9,14 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(0, 0, 0, 0.8);
-  
+  background-color: #131313; 
 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  background: linear-gradient(rgba(0, 0, 0, 0.75 ),rgba(0, 0, 0, 0.75)), url("./assets/background.jpg");
   
 
 }
@@ -39,8 +34,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {

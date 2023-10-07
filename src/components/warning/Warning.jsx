@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import WarningLogo from "./white_alert.svg";
 const Warning = () => {
   return (
-    <div className="flex ml-3">
+    <div className="flex ml-3 min-h-screen flex-col justify-center items-center">
       <div>
         <img src={WarningLogo} alt="warning" className="content-evenly" />
       </div>
