@@ -2,9 +2,12 @@ import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import Headphones from "../../assets/headphon.png";
 import NasaLogo from "../../assets/nasa_logo.png";
-import Ear from "../../assets/ear.png";
+import Sun from "../../assets/sun.png";
+
 import Particles from "react-tsparticles";
 import ParticleConfig from "../../config/particles.json";
+import ParticleConfig_Less from "../../config/particles_less.json";
+
 import { loadSlim } from "tsparticles-slim"; // if you are going to use `loadSlim`, install the "tsparticles-slim" package too.
 
 const Warning = () => {
@@ -24,6 +27,10 @@ const Warning = () => {
   return (
     <div className="text-3xl">
       <div className="h-screen flex flex-col justify-center items-center w-full">
+        <div className="absolute top-0 w-1/2 h-3/5">
+          <img src={Sun} alt="sun" />
+        </div>
+
         <div className="relative h-screen flex flex-col justify-center items-center w-screen ">
           <div
             className="absolute bottom-24 flex flex-row justify-around items-center w-screen h-64"
@@ -49,10 +56,6 @@ const Warning = () => {
         </div>
       </div>
 
-      <div className="h-screen flex flex-col justify-center items-center w-full text-center">
-        <p className="text-3xl">This program was made with the intent of...</p>
-      </div>
-
       <div className="h-screen flex flex-col justify-center items-center w-full text-center bg-red-500 relative overflow-hidden">
         <Particles
           className="absolute inset-0 z-0"
@@ -61,6 +64,19 @@ const Warning = () => {
           loaded={particlesLoaded}
           options={ParticleConfig}
         />
+        <p className="z-10 pb-5 relative text-5xl font-thin">
+          This program was made with the intent of...
+        </p>
+      </div>
+
+      <div className="h-screen flex flex-col justify-center items-center w-full text-center bg-red-500 relative overflow-hidden">
+        <Particles
+          className="absolute inset-0 z-0"
+          id="tsparticles2"
+          init={particlesInit}
+          loaded={particlesLoaded}
+          options={ParticleConfig_Less}
+        />
         <p className="z-10 pb-5 relative text-5xl font-bold">
           Learning about the universe that surrounds us.
         </p>
@@ -68,11 +84,7 @@ const Warning = () => {
 
       <div className="h-screen flex flex-col justify-center items-center w-full text-center blur-sm hover:blur-none transition-all duration-300">
         <p className="text-9xl"> 👓 </p>
-        <p className = "text-3xl font-thin">
-        With new glasses.
-      
-
-        </p>
+        <p className="text-3xl font-thin">With new glasses.</p>
       </div>
 
       <div className="h-screen flex flex-col justify-center items-center w-full text-center ">

@@ -2,7 +2,7 @@
   "autoPlay": true,
   "background": {
     "color": {
-      "value": "#232741"
+      "value": "#000000"
     },
     "position": "50% 50%",
     "repeat": "no-repeat",
@@ -301,7 +301,7 @@
         "height": 1080
       },
       "limit": 0,
-      "value": 160
+      "value": 40
     },
     "opacity": {
       "random": {

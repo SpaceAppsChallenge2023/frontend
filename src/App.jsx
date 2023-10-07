@@ -10,18 +10,16 @@ function App() {
   const pageTransition = {
     in: {
       opacity: 1,
-      x: 0,
-      scale: 1,
+      scale: 1, // Normal size
     },
     out: {
       opacity: 0,
-      x: "-100vw",
-      scale: 0.8,
+      scale: 0.8, // Slightly smaller size, creating a zoom-out effect
     },
   };
 
   const pageTransitionDuration = {
-    duration: 1,
+    duration: 1.5,
   };
 
   return (
@@ -33,6 +31,7 @@ function App() {
     </Router>
   );
 }
+
 
 function RoutesWithTransitions({ pageTransition, pageTransitionDuration }) {
   return (
