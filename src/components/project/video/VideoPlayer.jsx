@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import Video_Basado from "./nasa_video.mp4";
 import ButtonGroup from "../../ButtonGroup/ButtonGroup";
 import { useEffect } from "react";
+import Audio2 from "../../../assets/audio/melody_trim.mp3"; // Assume correct path
+import Audio1 from "../../../assets/audio/chord_trim.mp3"; // Assume correct path
 
 const VideoControlBar = ({ playState, playVideo }) => {
   return (
@@ -24,32 +26,48 @@ const VideoPlayer = () => {
   const [isHovering, setIsHovering] = useState(false);
   const videoRef = useRef(null);
 
+  const audioRef1 = useRef(null);
+  const audioRef2 = useRef(null);
+
+  const playMedia = () => {
+    videoRef.current.play();
+    audioRef1.current.play();
+    audioRef2.current.play();
+    setPlayState("⏸️");
+  };
+
+  const pauseMedia = () => {
+    videoRef.current.pause();
+    audioRef1.current.pause();
+    audioRef2.current.pause();
+    setPlayState("▶️");
+  };
+
   const playVideo = () => {
     if (videoRef.current.paused) {
-      videoRef.current.play();
-      setPlayState("⏸️");
+      playMedia();
     } else {
-      videoRef.current.pause();
-      setPlayState("▶️");
+      pauseMedia();
     }
   };
 
   const handleVideoEnded = () => {
     setPlayState("🔁");
     videoRef.current.currentTime = 0;
+    audioRef1.current.currentTime = 0;
+    audioRef2.current.currentTime = 0;
+    playMedia(); // If you want to automatically restart
   };
 
   useEffect(() => {
-    // Delay autoplay by 2 seconds
     const autoplayTimeout = setTimeout(() => {
-      playVideo();
+      playMedia();
     }, 2 * 1000);
 
     return () => {
-      // Clear the timeout if the component unmounts
       clearTimeout(autoplayTimeout);
     };
-  }, []); // Empty dependency array to run this effect only once
+  }, []);
 
   return (
     <div
@@ -66,6 +84,9 @@ const VideoPlayer = () => {
         onEnded={handleVideoEnded}
         className="rounded-xl video-style"
       />
+      <audio ref={audioRef1} src={Audio1}></audio>
+      <audio ref={audioRef2} src={Audio2}></audio>
+
       {isHovering && (
         <VideoControlBar playState={playState} playVideo={playVideo} />
       )}
