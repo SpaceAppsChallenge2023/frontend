@@ -71,7 +71,7 @@ const Settings = () => {
 
             <h1 className="text-3xl font-bold ">Instructions</h1>
             <p>Use the next buttons to interact with it:</p>
-            <br /> 
+            <br />
             <ul>
               <li> [A] to toggle the [Harmonics] </li>
               <li> [M] to toggle the [Melodies] </li>

@@ -13,7 +13,7 @@ import ParticleConfig_Less from "../../config/particles_less.json";
 
 import { loadSlim } from "tsparticles-slim"; // if you are going to use `loadSlim`, install the "tsparticles-slim" package too.
 import { motion, useScroll, useSpring } from "framer-motion";
-import "../../styles.css"
+import "../../styles.css";
 
 const Warning = () => {
   const particlesInit = useCallback(async (engine) => {
@@ -39,7 +39,6 @@ const Warning = () => {
   return (
     <div className="text-3xl bg-black dark:bg-black text-white">
       <motion.div className="progress-bar" style={{ scaleX }} />
-
 
       <div className="h-screen flex flex-col justify-center items-center w-full">
         <div className="absolute top-0 w-1/2 h-3/5">

@@ -7,20 +7,20 @@ const Project = () => {
   // Define animation variants
   const fadeIn = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1.5 } }
+    visible: { opacity: 1, transition: { duration: 1.5 } },
   };
 
   return (
-    <motion.div 
+    <motion.div
       className=""
-      initial="hidden"  // Start with hidden state
+      initial="hidden" // Start with hidden state
       animate="visible" // Animate to visible state
       variants={fadeIn} // Use defined variants
     >
-      <Settings /> 
+      <Settings />
       <VideoPlayer />
     </motion.div>
   );
 };
 
-export default Project; 
+export default Project;

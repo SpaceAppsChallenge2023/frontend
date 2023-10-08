@@ -1,5 +1,5 @@
 // ButtonGroup.js
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 function Button({ label, onClick, isToggled }) {
   return (
@@ -7,7 +7,11 @@ function Button({ label, onClick, isToggled }) {
       onClick={() => onClick(label)}
       className={`
       font-bold py-2 px-4 rounded m-1 
-      ${isToggled ? 'border-2 border-blue-500' : 'hover:border-2 hover:border-gray-500'}
+      ${
+        isToggled
+          ? "border-2 border-blue-500"
+          : "hover:border-2 hover:border-gray-500"
+      }
     `}
     >
       {label}
@@ -18,16 +22,16 @@ function Button({ label, onClick, isToggled }) {
 function ButtonGroup({ onAudioToggle }) {
   const [toggledButtons, setToggledButtons] = useState({
     A: false,
-    M: false
+    M: false,
   });
 
   const handleButtonClick = (label) => {
     // Toggle the state of the clicked button
     setToggledButtons((prev) => ({
       ...prev,
-      [label]: !prev[label]
+      [label]: !prev[label],
     }));
-    
+
     // Trigger audio toggling from parent
     onAudioToggle(label);
   };

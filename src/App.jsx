@@ -30,11 +30,7 @@ function App() {
   );
 }
 
-function RoutesWithTransitions({
-
-  pageTransition,
-  pageTransitionDuration,
-}) {
+function RoutesWithTransitions({ pageTransition, pageTransitionDuration }) {
   const location = useLocation();
 
   // Add a useEffect to log route changes
@@ -44,7 +40,7 @@ function RoutesWithTransitions({
 
   return (
     <>
-      <AnimatePresence mode = "wait">
+      <AnimatePresence mode="wait">
         <Routes>
           <Route
             path="/"
@@ -72,7 +68,7 @@ function RoutesWithTransitions({
             path="/home"
             element={
               <BlackScreenFade>
-                  <Project />
+                <Project />
               </BlackScreenFade>
             }
           />
