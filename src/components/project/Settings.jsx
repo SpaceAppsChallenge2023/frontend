@@ -75,6 +75,7 @@ const Settings = () => {
             <ul>
               <li> [A] to toggle the [Harmonics] </li>
               <li> [M] to toggle the [Melodies] </li>
+              <li> [D] to toggle the [Drums] </li>
               <li> [⏸️] to play, pause and replay. </li>
             </ul>
           </div>

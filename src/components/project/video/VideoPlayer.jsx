@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react";
 import Video_Basado from "./nasa_video.mp4";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import { useEffect } from "react";
-import Audio2 from "../../../assets/audio/melody_trim.mp3"; // Assume correct path
-import Audio1 from "../../../assets/audio/chord_trim.mp3"; // Assume correct path
+import Audio2 from "../../../assets/audio/melody_site.mp3"; // Assume correct path
+import Audio1 from "../../../assets/audio/chords_site.mp3"; // Assume correct path
+import Audio_D from "../../../assets/audio/drums_site.mp3"; // Assume correct path
 
 const VideoControlBar = ({ playState, playVideo, children}) => {
   return (
@@ -28,11 +29,13 @@ const VideoPlayer = () => {
 
   const audioRef1 = useRef(null);
   const audioRef2 = useRef(null);
+  const audioRef3 = useRef(null); 
 
   const playMedia = () => {
     videoRef.current.play();
     audioRef1.current.play();
     audioRef2.current.play();
+    audioRef3.current.play();
     setPlayState("⏸️");
   };
 
@@ -40,6 +43,7 @@ const VideoPlayer = () => {
     videoRef.current.pause();
     audioRef1.current.pause();
     audioRef2.current.pause();
+    audioRef3.current.pause();
     setPlayState("▶️");
   };
 
@@ -56,6 +60,7 @@ const VideoPlayer = () => {
     videoRef.current.currentTime = 0;
     audioRef1.current.currentTime = 0;
     audioRef2.current.currentTime = 0;
+    audioRef3.current.currentTime = 0;
     playMedia(); // If you want to automatically restart
   };
 
@@ -85,6 +90,13 @@ const VideoPlayer = () => {
           audioRef2.current.pause();
         }
         break;
+      case "D":
+        if (audioRef3.current.paused) {
+          audioRef3.current.play();
+        } else {
+          audioRef3.current.pause();
+        }
+        break;
       default:
         console.log(`Unknown button label: ${label}`);
     }
@@ -106,6 +118,7 @@ const VideoPlayer = () => {
       />
       <audio ref={audioRef1} src={Audio1}></audio>
       <audio ref={audioRef2} src={Audio2}></audio>
+      <audio ref={audioRef3} src={Audio_D}></audio>
 
       {isHovering && (
         <>        <VideoControlBar playState={playState} playVideo={playVideo}> 
