@@ -108,9 +108,6 @@ const Warning = () => {
             />
           </div>
 
-
-   
-
         <p>Or, in this case...</p>
 
         <div>
@@ -135,13 +132,14 @@ const Warning = () => {
         </div>
       </div>
 
-      <Link to="/">
+      <Link to="/home">
         <div className="h-screen flex flex-col justify-center items-center w-full text-center text-xl ">
           <div className="shadow-lg justify-middle p-32 flex flex-col items-center rounded-2xl">
             <p className="text-9xl"> 🎧 </p>
             <p className="text-5xl font-thin pt-16 hover:text-sky-500 transition ">
               Best used with headphones
             </p>
+
 
             <i className="text-sm font-thin text-gray-500 lg:text-xl dark:text-gray-400 pt-16">
               Click anywhere to start{" "}
