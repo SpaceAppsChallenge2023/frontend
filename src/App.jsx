@@ -35,7 +35,7 @@ function App() {
   };
 
   const pageDuration_BlackFade = { 
-    duration: 5,
+    duration: 3,
   };
   
   return (
@@ -97,7 +97,7 @@ function RoutesWithTransitions({ pageTransition, pageTransitionDuration, pageDur
             </motion.div>
           }
         />
-        
+
         <Route
           path="/warning"
           element={

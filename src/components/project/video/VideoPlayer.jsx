@@ -2,23 +2,22 @@ import React, { useRef, useState } from "react";
 import Video_Basado from "./nasa_video.mp4";
 import ButtonGroup from "../../ButtonGroup/ButtonGroup";
 import { useEffect } from "react";
-import {Link} from "react-router-dom";
 
 const VideoControlBar = ({ playState, playVideo }) => {
   return (
-    <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-center items-center">
-      <div className="bg-black px-10 py-3 rounded-2xl"> 
-      <button onClick={playVideo} className="px-2 py-1 bg-white rounded text-gray-900 text-sm">
-        {playState}
-      </button>
-      <ButtonGroup />
-      <Link to = "/"> Return </Link>
-      </div> 
+    <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-center items-center ">
+      <div className="bg-black px-10 py-3 rounded-2xl  transition-opacity duration-500 hover:opacity-100 opacity-0 border-2 border-white">
+        <button
+          onClick={playVideo}
+          className="rounded-lx text-gray-900 text-sm"
+        >
+          {playState}
+        </button>
+        <ButtonGroup />
+      </div>
     </div>
   );
 };
-
-
 
 const VideoPlayer = () => {
   const [playState, setPlayState] = useState("⏸️");
@@ -52,12 +51,10 @@ const VideoPlayer = () => {
     };
   }, []); // Empty dependency array to run this effect only once
 
-
-
   return (
-    <div 
-      className="relative mx-auto transition" 
-      style={{width: '100vw', height: '100vh'}}
+    <div
+      className="relative mx-auto "
+      style={{ width: "100vw", height: "100vh" }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
@@ -69,7 +66,9 @@ const VideoPlayer = () => {
         onEnded={handleVideoEnded}
         className="rounded-xl video-style"
       />
-      {isHovering && <VideoControlBar playState={playState} playVideo={playVideo} />}
+      {isHovering && (
+        <VideoControlBar playState={playState} playVideo={playVideo} />
+      )}
     </div>
   );
 };
