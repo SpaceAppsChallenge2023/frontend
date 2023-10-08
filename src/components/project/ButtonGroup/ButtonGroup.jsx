@@ -1,10 +1,10 @@
 // ButtonGroup.js
 import React from 'react';
 
-function Button({ label }) {
+function Button({ label, onClick }) {
   return (
     <button 
-      onClick={() => console.log(label)} 
+    onClick={() => onClick(label)}
       className=" font-bold py-2 px-4 rounded m-1"
     >
       {label}
@@ -12,12 +12,11 @@ function Button({ label }) {
   );
 }
 
-function ButtonGroup() {
+function ButtonGroup({ onAudioToggle }) {
   return (
     <div className="flex">
-      <Button label="A" />
-      <Button label="M" />
-      <Button label="D" />
+      <Button label="A" onClick={onAudioToggle}/>
+      <Button label="M" onClick={onAudioToggle}/>
     </div>
   );
 }

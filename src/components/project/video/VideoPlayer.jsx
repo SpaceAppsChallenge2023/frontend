@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import Video_Basado from "./nasa_video.mp4";
-import ButtonGroup from "../../ButtonGroup/ButtonGroup";
+import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import { useEffect } from "react";
 import Audio2 from "../../../assets/audio/melody_trim.mp3"; // Assume correct path
 import Audio1 from "../../../assets/audio/chord_trim.mp3"; // Assume correct path
 
-const VideoControlBar = ({ playState, playVideo }) => {
+const VideoControlBar = ({ playState, playVideo, children}) => {
   return (
     <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-center items-center ">
       <div className="bg-black px-10 py-3 rounded-2xl  transition-opacity duration-500 hover:opacity-100 opacity-0 border-2 border-white">
@@ -15,7 +15,7 @@ const VideoControlBar = ({ playState, playVideo }) => {
         >
           {playState}
         </button>
-        <ButtonGroup />
+        { children } 
       </div>
     </div>
   );
@@ -69,6 +69,26 @@ const VideoPlayer = () => {
     };
   }, []);
 
+  const toggleAudioPlayback = (label) => {
+    switch (label) {
+      case "A":
+        if (audioRef1.current.paused) {
+          audioRef1.current.play();
+        } else {
+          audioRef1.current.pause();
+        }
+        break;
+      case "M":
+        if (audioRef2.current.paused) {
+          audioRef2.current.play();
+        } else {
+          audioRef2.current.pause();
+        }
+        break;
+      default:
+        console.log(`Unknown button label: ${label}`);
+    }
+  };
   return (
     <div
       className="relative mx-auto "
@@ -88,7 +108,12 @@ const VideoPlayer = () => {
       <audio ref={audioRef2} src={Audio2}></audio>
 
       {isHovering && (
-        <VideoControlBar playState={playState} playVideo={playVideo} />
+        <>        <VideoControlBar playState={playState} playVideo={playVideo}> 
+          <ButtonGroup onAudioToggle={toggleAudioPlayback} />
+        </VideoControlBar>
+
+        </>
+
       )}
     </div>
   );
