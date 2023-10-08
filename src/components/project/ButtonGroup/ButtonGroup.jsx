@@ -1,11 +1,14 @@
 // ButtonGroup.js
-import React from 'react';
+import React, {useState} from "react";
 
-function Button({ label, onClick }) {
+function Button({ label, onClick, isToggled }) {
   return (
-    <button 
-    onClick={() => onClick(label)}
-      className=" font-bold py-2 px-4 rounded m-1"
+    <button
+      onClick={() => onClick(label)}
+      className={`
+      font-bold py-2 px-4 rounded m-1 
+      ${isToggled ? 'border-2 border-blue-500' : 'hover:border-2 hover:border-gray-500'}
+    `}
     >
       {label}
     </button>
@@ -13,10 +16,33 @@ function Button({ label, onClick }) {
 }
 
 function ButtonGroup({ onAudioToggle }) {
+  const [toggledButtons, setToggledButtons] = useState({
+    A: false,
+    M: false
+  });
+
+  const handleButtonClick = (label) => {
+    // Toggle the state of the clicked button
+    setToggledButtons((prev) => ({
+      ...prev,
+      [label]: !prev[label]
+    }));
+    
+    // Trigger audio toggling from parent
+    onAudioToggle(label);
+  };
   return (
     <div className="flex">
-      <Button label="A" onClick={onAudioToggle}/>
-      <Button label="M" onClick={onAudioToggle}/>
+      <Button
+        label="A"
+        onClick={handleButtonClick}
+        isToggled={toggledButtons.A}
+      />
+      <Button
+        label="M"
+        onClick={handleButtonClick}
+        isToggled={toggledButtons.M}
+      />
     </div>
   );
 }
