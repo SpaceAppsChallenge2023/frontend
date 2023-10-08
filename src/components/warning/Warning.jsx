@@ -12,6 +12,8 @@ import ParticleConfig from "../../config/particles.json";
 import ParticleConfig_Less from "../../config/particles_less.json";
 
 import { loadSlim } from "tsparticles-slim"; // if you are going to use `loadSlim`, install the "tsparticles-slim" package too.
+import { motion, useScroll, useSpring } from "framer-motion";
+import "../../styles.css"
 
 const Warning = () => {
   const particlesInit = useCallback(async (engine) => {
@@ -27,8 +29,18 @@ const Warning = () => {
     await console.log(container);
   }, []);
 
+  const { scrollYProgress } = useScroll(); // will be used for scroll progress indicator
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <div className="text-3xl">
+      <motion.div className="progress-bar" style={{ scaleX }} />
+
+
       <div className="h-screen flex flex-col justify-center items-center w-full">
         <div className="absolute top-0 w-1/2 h-3/5">
           <img src={Sun} alt="sun" />
@@ -99,8 +111,6 @@ const Warning = () => {
           className="flex flex-row justify-around items-center w-full h-64"
         >
           <div>
-
-            
             <img
               src={Meteroid_One}
               alt="meteoroid"
@@ -108,16 +118,16 @@ const Warning = () => {
             />
           </div>
 
-        <p>Or, in this case...</p>
+          <p>Or, in this case...</p>
 
-        <div>
-          <img
-            src={Meteroid_Two}
-            alt="meteoroid"
-            className="h-64 w-64 animate-floaty-rotaty-pulsy-asteroid"
-          />
+          <div>
+            <img
+              src={Meteroid_Two}
+              alt="meteoroid"
+              className="h-64 w-64 animate-floaty-rotaty-pulsy-asteroid"
+            />
+          </div>
         </div>
-        </div> 
       </div>
 
       <div className="h-screen flex flex-col justify-center items-center w-full text-center ">
@@ -139,7 +149,6 @@ const Warning = () => {
             <p className="text-5xl font-thin pt-16 hover:text-sky-500 transition ">
               Best used with headphones
             </p>
-
 
             <i className="text-sm font-thin text-gray-500 lg:text-xl dark:text-gray-400 pt-16">
               Click anywhere to start{" "}

@@ -22,4 +22,4 @@ const transition = (OgComponent) => {
     }
 }
 
-export default Transition; 
+export default transition; 
