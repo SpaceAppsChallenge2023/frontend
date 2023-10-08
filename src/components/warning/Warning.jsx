@@ -63,6 +63,8 @@ const Warning = () => {
                   {" "}
                   Scroll down{" "}
                 </i>
+                <br/>
+                <a className = "text-sm font-thin" href = "https://docs.google.com/document/d/1TXuzrVhep1KatwYzttqfeTm-cqRxQeqnePg0w95Oi5I/edit?usp=sharing" target = "_blank"> Link to the documentation </a> 
               </p>
             </div>
 

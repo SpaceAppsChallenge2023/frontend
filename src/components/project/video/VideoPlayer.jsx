@@ -76,6 +76,9 @@ const VideoPlayer = () => {
   useEffect(() => {
     const autoplayTimeout = setTimeout(() => {
       playMedia();
+      audioRef1.current.play();
+      audioRef2.current.play();
+      audioRef3.current.play();
     }, 2 * 1000);
 
     return () => {
