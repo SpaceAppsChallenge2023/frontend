@@ -37,7 +37,7 @@ const Warning = () => {
   });
 
   return (
-    <div className="text-3xl">
+    <div className="text-3xl bg-black dark:bg-black text-white">
       <motion.div className="progress-bar" style={{ scaleX }} />
 
 
