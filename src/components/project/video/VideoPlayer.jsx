@@ -26,18 +26,25 @@ const VideoPlayer = () => {
   const [playState, setPlayState] = useState("⏸️");
   const [isHovering, setIsHovering] = useState(false);
   const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(true); // music off by default 
+  const [isMuted, setIsMuted] = useState(false); // music off by default 
 
   const audioRef1 = useRef(null);
   const audioRef2 = useRef(null);
   const audioRef3 = useRef(null); 
 
+  const [isPlaying1, setIsPlaying1] = useState(true); // Keep track of whether each track should be playing
+  const [isPlaying2, setIsPlaying2] = useState(true); // You may adjust initial values as per your need
+  const [isPlaying3, setIsPlaying3] = useState(true);
+
+  
+
   const playMedia = () => {
     videoRef.current.play();
-    audioRef1.current.play();
-    audioRef2.current.play();
-    audioRef3.current.play();
-    setIsMuted(!isMuted); 
+    if (!isMuted) {
+      if (isPlaying1) audioRef1.current.play(); // Only play if it should be playing
+      if (isPlaying2) audioRef2.current.play();
+      if (isPlaying3) audioRef3.current.play();
+    }
     setPlayState("⏸️");
   };
 
@@ -46,7 +53,6 @@ const VideoPlayer = () => {
     audioRef1.current.pause();
     audioRef2.current.pause();
     audioRef3.current.pause();
-    setIsMuted(!isMuted); 
     setPlayState("▶️");
   };
 
@@ -81,30 +87,38 @@ const VideoPlayer = () => {
     audioRef1.current.muted = isMuted;
     audioRef2.current.muted = isMuted;
     audioRef3.current.muted = isMuted;
-    videoRef.current.muted = isMuted;
   }, [isMuted]);
+
 
   const toggleAudioPlayback = (label) => {
     switch (label) {
       case "A":
         if (audioRef1.current.paused) {
+          setIsPlaying1(true);
           audioRef1.current.play();
+
         } else {
+          setIsPlaying1(false);
           audioRef1.current.pause();
+
         }
         break;
       case "M":
         if (audioRef2.current.paused) {
           audioRef2.current.play();
+          setIsPlaying2(true);
         } else {
           audioRef2.current.pause();
+          setIsPlaying2(false);
         }
         break;
       case "D":
         if (audioRef3.current.paused) {
           audioRef3.current.play();
+          setIsPlaying3(true);
         } else {
           audioRef3.current.pause();
+          setIsPlaying3(false);
         }
         break;
       default:
@@ -113,10 +127,10 @@ const VideoPlayer = () => {
   };
   return (
     <div
-      className="relative mx-auto "
-      style={{ width: "100vw", height: "100vh" }}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
+    className="relative mx-auto"
+    style={{ width: "100vw", height: "100vh" }}
+    onMouseEnter={() => setIsHovering(true)}
+    onMouseLeave={() => setIsHovering(false)}
     >
       <video
         ref={videoRef}
@@ -131,9 +145,12 @@ const VideoPlayer = () => {
       <audio ref={audioRef3} src={Audio_D}></audio>
 
       {isHovering && (
-        <>        <VideoControlBar playState={playState} playVideo={playVideo}> 
-          <ButtonGroup onAudioToggle={toggleAudioPlayback} />
-        </VideoControlBar>
+        <>                 <VideoControlBar playState={playState} playVideo={playVideo}>
+        <ButtonGroup onAudioToggle={toggleAudioPlayback} />
+        <button onClick={() => setIsMuted(!isMuted)}>
+          {isMuted ? "Unmute Audio" : "Mute Audio"}
+        </button>
+      </VideoControlBar>
 
         </>
 
