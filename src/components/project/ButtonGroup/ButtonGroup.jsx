@@ -21,9 +21,9 @@ function Button({ label, onClick, isToggled }) {
 
 function ButtonGroup({ onAudioToggle }) {
   const [toggledButtons, setToggledButtons] = useState({
-    A: true,
-    M: true,
-    D: true, 
+    A: false,
+    M: false,
+    D: false, 
   });
 
   const handleButtonClick = (label) => {

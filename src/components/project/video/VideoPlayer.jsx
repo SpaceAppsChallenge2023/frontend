@@ -26,6 +26,7 @@ const VideoPlayer = () => {
   const [playState, setPlayState] = useState("⏸️");
   const [isHovering, setIsHovering] = useState(false);
   const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true); // music off by default 
 
   const audioRef1 = useRef(null);
   const audioRef2 = useRef(null);
@@ -36,6 +37,7 @@ const VideoPlayer = () => {
     audioRef1.current.play();
     audioRef2.current.play();
     audioRef3.current.play();
+    setIsMuted(!isMuted); 
     setPlayState("⏸️");
   };
 
@@ -44,6 +46,7 @@ const VideoPlayer = () => {
     audioRef1.current.pause();
     audioRef2.current.pause();
     audioRef3.current.pause();
+    setIsMuted(!isMuted); 
     setPlayState("▶️");
   };
 
@@ -61,7 +64,7 @@ const VideoPlayer = () => {
     audioRef1.current.currentTime = 0;
     audioRef2.current.currentTime = 0;
     audioRef3.current.currentTime = 0;
-    playMedia(); // If you want to automatically restart
+    // playMedia(); // If you want to automatically restart
   };
 
   useEffect(() => {
@@ -73,6 +76,13 @@ const VideoPlayer = () => {
       clearTimeout(autoplayTimeout);
     };
   }, []);
+
+  useEffect(() => {
+    audioRef1.current.muted = isMuted;
+    audioRef2.current.muted = isMuted;
+    audioRef3.current.muted = isMuted;
+    videoRef.current.muted = isMuted;
+  }, [isMuted]);
 
   const toggleAudioPlayback = (label) => {
     switch (label) {
